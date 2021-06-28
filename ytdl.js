@@ -1,4 +1,5 @@
 // Download button
+
 (function () {
   if (
     document.getElementById("browser-app") ||

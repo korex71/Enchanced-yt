@@ -1,6 +1,4 @@
 (() => {
-  const defined = (v) => v !== null && v !== undefined;
-
   const timeout = setInterval(() => {
     // First try skip click
     const skipAdBtn = document.querySelector("button.ytp-ad-skip-button");
@@ -9,9 +7,9 @@
 
     // Force skip.
     const ad = [...document.querySelectorAll(".ad-showing")][0];
-    if (defined(ad)) {
+    if (ad) {
       const video = document.querySelector("video");
-      if (defined(video)) {
+      if (video) {
         video.currentTime = video.duration;
       }
     }
