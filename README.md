@@ -1,4 +1,4 @@
-# Navigator extension
+# Browser extension
 
 ## Features
 

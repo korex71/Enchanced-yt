@@ -11,7 +11,7 @@
       }
       if (
         document.getElementById("meta-contents") &&
-        document.getElementById("punisherx") === null
+        document.getElementById("enchanced-download") === null
       ) {
         AddYT();
       }
@@ -27,29 +27,35 @@
 
   function AddYT() {
     var buttonDiv = document.createElement("span");
-    buttonDiv.id = "punisherx";
-    buttonDiv.style.width = "100%";
-    buttonDiv.style.marginTop = "3px";
-    buttonDiv.style.padding = "10px 0";
     var addButton = document.createElement("a");
+
+    buttonDiv.style.cssText = `width:100%;margin-top:3px;padding:10px 0;`;
+
+    buttonDiv.id = "enchanced-download";
+
+    addButton.target = "_blank";
+
     addButton.appendChild(document.createTextNode("DOWNLOAD"));
-    addButton.style.width = "100%";
-    addButton.style.cursor = "pointer";
-    addButton.style.height = "inherit";
-    addButton.style.backgroundColor = "#393939";
-    addButton.style.color = "#ffffff";
-    addButton.style.padding = "10px 22px";
-    addButton.style.margin = "0px 0px";
-    addButton.style.border = "0";
-    addButton.style.borderRadius = "2px";
-    addButton.style.fontSize = "1.4rem";
-    addButton.style.fontFamily = "inherit";
-    addButton.style.textAlign = "center";
-    addButton.style.textDecoration = "none";
+
+    addButton.style.cssText = `
+      width:100%;
+      cursor:pointer;
+      height:inherit;
+      background-color:#393939;
+      color:#fff;
+      padding:10px 22px;
+      margin:0px 0px;
+      border:0;
+      border-radius:2px;
+      font-size:1.4rem;
+      font-family:inherit;
+      text-align:center;
+      text-decoration:none;
+    `;
+
     addButton.href =
       "http://kore.zapto.org/api/youtube/" +
       encodeURIComponent(setElement(window.location));
-    addButton.target = "_blank";
     buttonDiv.appendChild(addButton);
     var targetElement = document.querySelectorAll("[id='subscribe-button']");
     if (targetElement) {
