@@ -1,4 +1,4 @@
-# Extensão para navegador
+# Navigator extension
 
 ## Features
 
