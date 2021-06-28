@@ -2,7 +2,7 @@
 
 ## Features
 
-1. Auto skip ad
-2. Download audio / video
+- Auto skip ad
+- Download audio / video
 
 ### Working on yt / yt music
