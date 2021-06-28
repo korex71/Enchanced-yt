@@ -15,7 +15,7 @@
         video.currentTime = video.duration;
       }
     }
-  }, 300);
+  }, 50);
 
   return function () {
     clearTimeout(timeout);
