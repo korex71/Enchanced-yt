@@ -4,7 +4,7 @@
   "description": "Auto skip youtube / youtube music ads & Download video/audio.",
   "version": "1.0",
   "icons": {
-    "128": "icons/block-128.png"
+    "512": "icons/enchanced.png"
   },
   "content_scripts": [
     {
