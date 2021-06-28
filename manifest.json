@@ -8,11 +8,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://youtube.com/*"],
+      "matches": ["https://www.youtube.com/*", "http://www.youtube.com/*"],
       "js": ["ytdl.js", "skip.js"]
     },
     {
-      "matches": ["https://music.youtube.com/*"],
+      "matches": ["https://music.youtube.com/*", "http://music.youtube.com/*"],
       "js": ["ytm.js", "skip.js"]
     }
   ]
