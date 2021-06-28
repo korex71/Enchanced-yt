@@ -29,7 +29,7 @@
     var buttonDiv = document.createElement("span");
     var addButton = document.createElement("a");
 
-    buttonDiv.style.cssText = `width:100%;margin-top:3px;padding:10px 0;`;
+    buttonDiv.style.cssText = `display:flex;padding:10px 3px;`;
 
     buttonDiv.id = "enchanced-download";
 
@@ -43,7 +43,7 @@
       height:inherit;
       background-color:#393939;
       color:#fff;
-      padding:10px 22px;
+      padding:10px 0px;
       margin:0px 0px;
       border:0;
       border-radius:2px;
