@@ -181,46 +181,8 @@ function removeVideoAds() {
       super(URL.createObjectURL(new Blob([newBlobStr])));
       twitchMainWorker = this;
       this.onmessage = function (e) {
-        if (e.data.key == "ShowAdBlockBanner") {
-          if (adBlockDiv == null) {
-            adBlockDiv = getAdBlockDiv();
-          }
-          adBlockDiv.P.textContent = "Blocking ads...";
-          adBlockDiv.style.display = "block";
-        } else if (e.data.key == "HideAdBlockBanner") {
-          if (adBlockDiv == null) {
-            adBlockDiv = getAdBlockDiv();
-          }
-          adBlockDiv.style.display = "none";
-        } else if (e.data.key == "PauseResumePlayer") {
-          reloadTwitchPlayer(true);
-        } else if (e.data.key == "ShowDonateBanner") {
-          if (adBlockDiv == null) {
-            adBlockDiv = getAdBlockDiv();
-          }
-          adBlockDiv.P.textContent = "Help support us...";
-          adBlockDiv.style.display = "block";
-        }
+        if (e.data.key == "PauseResumePlayer") reloadTwitchPlayer(true);
       };
-
-      function getAdBlockDiv() {
-        //To display a notification to the user, that an ad is being blocked.
-        var playerRootDiv = document.querySelector(".video-player");
-        var adBlockDiv = null;
-        if (playerRootDiv != null) {
-          adBlockDiv = playerRootDiv.querySelector(".adblock-overlay");
-          if (adBlockDiv == null) {
-            adBlockDiv = document.createElement("div");
-            adBlockDiv.className = "adblock-overlay";
-            adBlockDiv.innerHTML =
-              '<a href="https://paypal.me/ttvadblock" target="_blank"><div class="player-adblock-notice" style="color: white; background-color: rgba(0, 0, 0, 0.8); position: absolute; top: 0px; left: 0px; padding: 5px;"><p></p></div></a>';
-            adBlockDiv.style.display = "none";
-            adBlockDiv.P = adBlockDiv.querySelector("p");
-            playerRootDiv.appendChild(adBlockDiv);
-          }
-        }
-        return adBlockDiv;
-      }
     }
   };
 
@@ -702,38 +664,6 @@ function removeVideoAds() {
         videoController.style.visibility = "visible";
       }
     }
-  }
-
-  function generateRandomGQLDeviceID() {
-    var randomGQLDeviceID = "eVI6jx47kJvCFfFowK86eVI6jx47kJvC";
-    try {
-      var alphaNum =
-        "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567";
-
-      var currentDate = new Date();
-      var currentDateStart = new Date(currentDate.getFullYear(), 0, 0);
-      var dateDifference =
-        currentDate -
-        currentDateStart +
-        (currentDateStart.getTimezoneOffset() -
-          currentDate.getTimezoneOffset()) *
-          60 *
-          1000;
-      var oneDay = 1000 * 60 * 60 * 24;
-
-      var currentDayNumber = Math.floor(dateDifference / oneDay);
-
-      var letterNumLocation = currentDayNumber / 6;
-      letterNumLocation = letterNumLocation.toFixed(0);
-      var letterNumToChangeTo = alphaNum.charAt(letterNumLocation);
-      letterNumLocation = letterNumLocation / 2;
-      letterNumLocation = letterNumLocation.toFixed(0);
-
-      randomGQLDeviceID = randomGQLDeviceID.split("");
-      randomGQLDeviceID[letterNumLocation] = letterNumToChangeTo;
-      randomGQLDeviceID = randomGQLDeviceID.join("");
-    } catch (err) {}
-    return randomGQLDeviceID;
   }
 
   function hookFetch() {

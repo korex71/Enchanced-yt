@@ -10,7 +10,7 @@
     if (ad) {
       const video = document.querySelector("video");
       if (video) {
-        video.currentTime = video.duration;
+        video.currentTime = 10000;
       }
     }
   }, 50);
