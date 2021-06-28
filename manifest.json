@@ -9,7 +9,7 @@
   "browser_action": {
     "default_icon": "icons/enchanced.png"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "declarativeNetRequest"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "http://www.youtube.com/*"],
@@ -18,8 +18,22 @@
     {
       "matches": ["https://music.youtube.com/*", "http://music.youtube.com/*"],
       "js": ["ytm.js", "skip.js"]
+    },
+    {
+      "js": ["twitch.js"],
+      "matches": ["https://*.twitch.tv/*"],
+      "run_at": "document_start"
     }
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "enabled": true,
+        "id": "ruleset_1",
+        "path": "block.json"
+      }
+    ]
+  },
   "background": {
     "persistent": false,
     "scripts": ["background.js"]
