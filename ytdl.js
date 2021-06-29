@@ -19,16 +19,16 @@
     }, 1);
 
     setElement = function (url) {
-      var regExp =
+      let regExp =
         /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-      var match = String(url).match(regExp);
+      let match = String(url).match(regExp);
       return match && match[7].length == 11 ? match[7] : false;
     };
   }
 
   function AddYT() {
-    var buttonDiv = document.createElement("span");
-    var addButton = document.createElement("a");
+    let buttonDiv = document.createElement("span");
+    let addButton = document.createElement("a");
 
     buttonDiv.style.cssText = `display:flex;padding:10px 3px;`;
 
@@ -58,9 +58,9 @@
       "http://kore.zapto.org/api/youtube/" +
       encodeURIComponent(setElement(window.location));
     buttonDiv.appendChild(addButton);
-    var targetElement = document.querySelectorAll("[id='subscribe-button']");
+    let targetElement = document.querySelectorAll("[id='subscribe-button']");
     if (targetElement) {
-      for (var i = 0; i < targetElement.length; i++) {
+      for (let i = 0; i < targetElement.length; i++) {
         if (
           targetElement[i].className.indexOf(
             "ytd-video-secondary-info-renderer"
@@ -70,7 +70,7 @@
         }
       }
     }
-    var descriptionBox = document.querySelectorAll(
+    let descriptionBox = document.querySelectorAll(
       "ytd-video-secondary-info-renderer"
     );
     if (descriptionBox[0].className.indexOf("loading") > -1) {
