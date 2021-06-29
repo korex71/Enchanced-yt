@@ -2,7 +2,8 @@
   const timeout = setInterval(() => {
     // First try skip click
     const skipAdBtn = document.querySelector("button.ytp-ad-skip-button");
-
+    const AdBanner = document.querySelector(".ytp-ad-image-overlay");
+    if (AdBanner) AdBanner.style.display = "none";
     if (skipAdBtn) skipAdBtn.click();
 
     // Force skip.
