@@ -1,27 +1,46 @@
+// function $(selector) {
+//   this.element =
+//     typeof selector === "string" ? document.querySelector(selector) : selector;
+
+//   this.css = (style) => {
+//     element.style.cssText = style;
+//   };
+
+//   this.click = () => this.element.click();
+
+//   return element;
+// }
+
 const $ = (selector) =>
   typeof selector === "string" ? document.querySelector(selector) : selector;
 
 const $click = (selector) => {
-  if (typeof selector === "string") {
-    if (document.querySelector(selector)) {
-      return document.querySelector(selector).click();
-    }
-  }
+  const element =
+    typeof selector === "string" ? document.querySelector(selector) : selector;
 
-  if (selector) {
-    return selector.click();
-  }
+  if (element) element.click();
+};
+
+const $css = (styles) => {
+  let css = document.createElement("style");
+  css.innerText = styles;
+  document.head.appendChild(css);
+};
+
+window.onload = () => {
+  let styles = "";
+
+  styles += ".ytp-ad-image-overlay { display: 'none'!important } ";
+  styles +=
+    ".ytp-ad-overlay-container, #player-ads { display: 'none'!important } ";
+
+  $css(styles);
 };
 
 (() => {
   const timeout = setInterval(() => {
-    // First try skip click
-    const AdBanner = $(".ytp-ad-image-overlay"); // Remove ad banner
-
-    if (AdBanner) AdBanner.style.display = "none";
-
-    $click("button.ytp-ad-skip-button");
-    $click("button.ytp-ad-overlay-close-button");
+    $click("button.ytp-ad-skip-button"); // Try skip click
+    $click("button.ytp-ad-overlay-close-button"); // Try close ad banner
 
     // Force skip ad if exists.
     const videoAd = $(".ad-showing video");

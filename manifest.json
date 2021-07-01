@@ -13,7 +13,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "http://www.youtube.com/*"],
-      "js": ["ytdl.js", "skip.js"]
+      "js": ["ytdl.js", "skip.js"],
+      "run_at": "document_start"
     },
     {
       "matches": ["https://music.youtube.com/*", "http://music.youtube.com/*"],
