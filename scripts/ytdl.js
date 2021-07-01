@@ -1,5 +1,3 @@
-// Download button
-
 (function () {
   if (
     document.getElementById("browser-app") ||
@@ -34,6 +32,8 @@
 
     buttonDiv.id = "enchanced-download";
 
+    // $css("#enchanced-download {display: flex; padding: 10px 3px;}");
+
     addButton.target = "_blank";
 
     addButton.appendChild(document.createTextNode("DOWNLOAD"));
@@ -57,8 +57,13 @@
     addButton.href =
       "http://kore.zapto.org/api/youtube/" +
       encodeURIComponent(setElement(window.location));
+
     buttonDiv.appendChild(addButton);
+
     let targetElement = document.querySelectorAll("[id='subscribe-button']");
+
+    // let targetElement = document.querySelectorAll("#subscribe-button");
+
     if (targetElement) {
       for (let i = 0; i < targetElement.length; i++) {
         if (
@@ -70,13 +75,13 @@
         }
       }
     }
+
     let descriptionBox = document.querySelectorAll(
       "ytd-video-secondary-info-renderer"
     );
+
     if (descriptionBox[0].className.indexOf("loading") > -1) {
       descriptionBox[0].classList.remove("loading");
     }
   }
 })();
-
-// Download button

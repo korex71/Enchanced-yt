@@ -13,15 +13,16 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "http://www.youtube.com/*"],
-      "js": ["ytdl.js", "skip.js"],
+      "js": ["scripts/ytdl.js", "scripts/skip.js"],
       "run_at": "document_start"
     },
     {
       "matches": ["https://music.youtube.com/*", "http://music.youtube.com/*"],
-      "js": ["ytm.js", "skip.js"]
+      "js": ["scripts/ytm.js", "scripts/skip.js"],
+      "run_at": "document_start"
     },
     {
-      "js": ["twitch.js"],
+      "js": ["scripts/twitch.js"],
       "matches": ["https://*.twitch.tv/*"],
       "run_at": "document_start"
     }
@@ -31,12 +32,12 @@
       {
         "enabled": true,
         "id": "ruleset_1",
-        "path": "block.json"
+        "path": "rules.json"
       }
     ]
   },
   "background": {
     "persistent": false,
-    "scripts": ["background.js"]
+    "scripts": ["scripts/background.js"]
   }
 }

@@ -1,16 +1,3 @@
-// function $(selector) {
-//   this.element =
-//     typeof selector === "string" ? document.querySelector(selector) : selector;
-
-//   this.css = (style) => {
-//     element.style.cssText = style;
-//   };
-
-//   this.click = () => this.element.click();
-
-//   return element;
-// }
-
 const $ = (selector) =>
   typeof selector === "string" ? document.querySelector(selector) : selector;
 
@@ -28,9 +15,7 @@ const $css = (styles) => {
 };
 
 window.onload = () => {
-  let styles = "";
-
-  styles += ".ytp-ad-image-overlay { display: 'none'!important } ";
+  let styles = ".ytp-ad-image-overlay { display: 'none'!important } ";
   styles +=
     ".ytp-ad-overlay-container, #player-ads { display: 'none'!important } ";
 
@@ -39,18 +24,17 @@ window.onload = () => {
 
 (() => {
   const timeout = setInterval(() => {
-    $click("button.ytp-ad-skip-button"); // Try skip click
     $click("button.ytp-ad-overlay-close-button"); // Try close ad banner
+    $click("button.ytp-ad-skip-button");
 
     // Force skip ad if exists.
     const videoAd = $(".ad-showing video");
 
     if (videoAd) {
-      if (videoAd.currentTime === videoAd.duration) {
-        $click("button.ytp-ad-skip-button"); // Click on "skip"
+      // Prevent non-finite value.
+      if (isFinite(video.duration)) {
+        videoAd.currentTime = videoAd.duration; // Skip to end
       }
-
-      videoAd.currentTime = videoAd.duration; // Skip to end
 
       $click("button.ytp-ad-skip-button"); // Click on "skip"
     }
