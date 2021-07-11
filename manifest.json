@@ -9,7 +9,12 @@
   "browser_action": {
     "default_icon": "icons/enchanced.png"
   },
-  "permissions": ["tabs", "declarativeNetRequest"],
+  "permissions": [
+    "tabs",
+    "declarativeNetRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*", "http://www.youtube.com/*"],

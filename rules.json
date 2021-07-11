@@ -262,5 +262,49 @@
         "other"
       ]
     }
+  },
+  {
+    "id": 13,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "doubleclick.net",
+      "domains": ["youtube.com", "music.youtube.com"],
+      "resourceTypes": [
+        "script",
+        "main_frame",
+        "sub_frame",
+        "image",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "csp_report",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "googlesyndication.com",
+      "domains": ["youtube.com", "music.youtube.com"],
+      "resourceTypes": [
+        "script",
+        "main_frame",
+        "sub_frame",
+        "image",
+        "object",
+        "xmlhttprequest",
+        "ping",
+        "csp_report",
+        "media",
+        "websocket",
+        "other"
+      ]
+    }
   }
 ]

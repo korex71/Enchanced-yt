@@ -60,21 +60,25 @@
 
     buttonDiv.appendChild(addButton);
 
-    let targetElement = document.querySelectorAll("[id='subscribe-button']");
+    // let targetElement = document.querySelectorAll("[id='subscribe-button']");
 
-    // let targetElement = document.querySelectorAll("#subscribe-button");
+    let targetElement = document.querySelector("#subscribe-button");
 
     if (targetElement) {
-      for (let i = 0; i < targetElement.length; i++) {
-        if (
-          targetElement[i].className.indexOf(
-            "ytd-video-secondary-info-renderer"
-          ) > -1
-        ) {
-          targetElement[i].appendChild(buttonDiv);
-        }
-      }
+      targetElement.appendChild(buttonDiv);
     }
+
+    // if (targetElement) {
+    //   for (let i = 0; i < targetElement.length; i++) {
+    //     if (
+    //       targetElement[i].className.indexOf(
+    //         "ytd-video-secondary-info-renderer"
+    //       ) > -1
+    //     ) {
+    //       targetElement[i].appendChild(buttonDiv);
+    //     }
+    //   }
+    // }
 
     let descriptionBox = document.querySelectorAll(
       "ytd-video-secondary-info-renderer"
