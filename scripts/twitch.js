@@ -1,42 +1,3 @@
-function updateSettings() {
-  chrome.storage.local.get(["onOffTTV"], function (result) {
-    if (result.onOffTTV == "true" || result.onOffTTV == "false") {
-      window.postMessage(
-        {
-          type: "onOff",
-          value: result.onOffTTV,
-        },
-        "*"
-      );
-    }
-  });
-  chrome.storage.local.get(["fullQualityTTV"], function (result) {
-    if (result.fullQualityTTV == "true" || result.fullQualityTTV == "false") {
-      window.postMessage(
-        {
-          type: "fullQuality",
-          value: result.fullQualityTTV,
-        },
-        "*"
-      );
-    }
-  });
-  chrome.storage.local.get(["blockingMessageTTV"], function (result) {
-    if (
-      result.blockingMessageTTV == "true" ||
-      result.blockingMessageTTV == "false"
-    ) {
-      window.postMessage(
-        {
-          type: "blockingMessage",
-          value: result.blockingMessageTTV,
-        },
-        "*"
-      );
-    }
-  });
-}
-
 function removeVideoAds() {
   //This stops Twitch from pausing the player when in another tab and an ad shows.
   Object.defineProperty(document, "visibilityState", {
@@ -49,15 +10,18 @@ function removeVideoAds() {
       return false;
     },
   });
+
   const block = (e) => {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
   };
+
   document.addEventListener("visibilitychange", block, true);
   document.addEventListener("webkitvisibilitychange", block, true);
   document.addEventListener("mozvisibilitychange", block, true);
   document.addEventListener("hasFocus", block, true);
+
   if (/Firefox/.test(navigator.userAgent)) {
     Object.defineProperty(document, "mozHidden", {
       get() {
@@ -73,34 +37,6 @@ function removeVideoAds() {
   }
 
   //Send settings updates to worker.
-  window.addEventListener(
-    "message",
-    (event) => {
-      if (event.data.type && event.data.type == "onOff") {
-        if (twitchMainWorker) {
-          twitchMainWorker.postMessage({
-            key: "onOff",
-            value: event.data.value,
-          });
-        }
-      } else if (event.data.type && event.data.type == "fullQuality") {
-        if (twitchMainWorker) {
-          twitchMainWorker.postMessage({
-            key: "fullQuality",
-            value: event.data.value,
-          });
-        }
-      } else if (event.data.type && event.data.type == "blockingMessage") {
-        if (twitchMainWorker) {
-          twitchMainWorker.postMessage({
-            key: "blockingMessage",
-            value: event.data.value,
-          });
-        }
-      }
-    },
-    false
-  );
 
   function declareOptions(scope) {
     scope.AdSignifier = "stitched-ad";
@@ -123,8 +59,6 @@ function removeVideoAds() {
   declareOptions(window);
 
   var twitchMainWorker = null;
-
-  var adBlockDiv = null;
 
   const oldWorker = window.Worker;
 
@@ -280,6 +214,7 @@ function removeVideoAds() {
             var streamM3u8Url = encodingsM3u8.match(/^https:.*\.m3u8$/m)[0];
 
             var streamM3u8Response = await realFetch(streamM3u8Url);
+
             if (streamM3u8Response.status == 200) {
               var m3u8Text = await streamM3u8Response.text();
               if (!m3u8Text.includes(AdSignifier)) {
@@ -291,21 +226,6 @@ function removeVideoAds() {
                 }
               }
               WasShowingAd = true;
-              if (BlockingMessage == false) {
-                if (Math.floor(Math.random() * 4) == 3) {
-                  postMessage({
-                    key: "ShowDonateBanner",
-                  });
-                } else {
-                  postMessage({
-                    key: "ShowAdBlockBanner",
-                  });
-                }
-              } else if (BlockingMessage == true) {
-                postMessage({
-                  key: "HideAdBlockBanner",
-                });
-              }
               return m3u8Text;
             } else {
               return textStr;
@@ -712,6 +632,3 @@ script.appendChild(document.createTextNode("(" + removeVideoAds + ")();"));
 (document.body || document.head || document.documentElement).appendChild(
   script
 );
-setTimeout(function () {
-  updateSettings();
-}, 1000);
